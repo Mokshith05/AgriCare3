@@ -130,5 +130,11 @@
       "title": "Recent Activities",
       "noActivities": "No activities logged yet."
     }
+  },
+  "chatbot": {
+    "title": "AgriBot Assistant",
+    "welcomeMessage": "Hello! I'm AgriBot. How can I help you with your crops today?",
+    "inputPlaceholder": "Ask about your crops...",
+    "errorMessage": "Sorry, I'm having trouble connecting right now. Please try again later."
   }
 }
