@@ -1,0 +1,121 @@
+{
+  "sidebar": {
+    "appName": "AgriProtect AI",
+    "dashboard": "Dashboard",
+    "encyclopedia": "Encyclopedia",
+    "preventiveCare": "Preventive Care",
+    "logbook": "Field Logbook"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "quickGuide": {
+      "title": "Quick Guide",
+      "step1": "1. Upload a clear photo of the affected crop.",
+      "step2": "2. Let our AI analyze for diseases or pests.",
+      "step3": "3. Receive instant organic treatment advice."
+    }
+  },
+  "weather": {
+    "title": "Local Weather",
+    "description": "Conditions for your crops",
+    "sunny": "Sunny",
+    "humidity": "Humidity",
+    "high": "High",
+    "uvIndex": "UV Index",
+    "alert": {
+      "title": "High Alert!",
+      "description": "High humidity and temperature increase the risk of Powdery Mildew. Consider preventive spraying."
+    }
+  },
+  "imageUploader": {
+    "dragAndDrop": "Drag & drop an image here",
+    "or": "or",
+    "browseFiles": "Browse files",
+    "analyzeButton": "Analyze Crop",
+    "analyzingButton": "Analyzing..."
+  },
+  "analysis": {
+    "reportTitle": "Analysis Report",
+    "newAnalysisButton": "New Analysis",
+    "aiAnalysisTitle": "AI Analysis",
+    "treatmentSuggestionsTitle": "Treatment Suggestions"
+  },
+  "toast": {
+    "analysisFailed": {
+      "title": "Analysis Failed",
+      "description": "An unknown error occurred."
+    },
+    "error": {
+      "title": "Error",
+      "description": "Could not analyze image. Please try again."
+    }
+  },
+  "encyclopedia": {
+    "title": "Encyclopedia",
+    "pageTitle": "Crop Encyclopedia"
+  },
+  "preventiveCare": {
+    "title": "Preventive Care",
+    "pageTitle": "Crop Care Guide",
+    "pageDescription": "Proactive tips to keep your crops healthy and thriving.",
+    "crops": {
+      "tomatoes": "Tomatoes",
+      "leafygreens(spinach,lettuce)": "Leafy Greens (Spinach, Lettuce)",
+      "peppers&eggplants": "Peppers & Eggplants"
+    },
+    "tips": {
+      "properspacing": {
+        "title": "Proper Spacing",
+        "description": "Plant tomato seedlings at least 24-36 inches apart to ensure good air circulation, which helps prevent fungal diseases like blight."
+      },
+      "consistentwatering": {
+        "title": "Consistent Watering",
+        "description": "Water deeply and at the base of the plant to avoid wetting the foliage. Inconsistent watering can lead to blossom-end rot."
+      },
+      "mulching": {
+        "title": "Mulching",
+        "description": "Apply a layer of organic mulch (like straw or wood chips) to conserve moisture, suppress weeds, and prevent soil-borne diseases from splashing onto leaves."
+      },
+      "croprotation": {
+        "title": "Crop Rotation",
+        "description": "Avoid planting leafy greens in the same spot year after year to prevent the buildup of soil pests and diseases."
+      },
+      "shadeinhotweather": {
+        "title": "Shade in Hot Weather",
+        "description": "Provide partial shade during the hottest parts of the day to prevent bolting (premature flowering) and scorched leaves."
+      },
+      "monitorforpests": {
+        "title": "Monitor for Pests",
+        "description": "Regularly check for aphids and cabbage worms. Hand-pick larger pests or use insecticidal soap for smaller ones."
+      },
+      "supportandstaking": {
+        "title": "Support and Staking",
+        "description": "Provide stakes or cages to support the plants as they grow heavy with fruit. This keeps fruit off the ground and improves air circulation."
+      },
+      "fertilizeappropriately": {
+        "title": "Fertilize Appropriately",
+        "description": "Use a balanced, low-nitrogen fertilizer. Too much nitrogen can encourage lush foliage at the expense of fruit production."
+      },
+      "watchforbacterialspot": {
+        "title": "Watch for Bacterial Spot",
+        "description": "Avoid working with plants when they are wet to prevent the spread of bacterial diseases. Use copper-based sprays as a preventive measure if needed."
+      }
+    }
+  },
+  "logbook": {
+    "title": "Field Logbook",
+    "addNewLog": {
+      "title": "Add New Log",
+      "description": "Record a new activity for your field.",
+      "activityLabel": "Activity",
+      "activityPlaceholder": "e.g., Applied neem oil",
+      "notesLabel": "Notes (optional)",
+      "notesPlaceholder": "e.g., On the north field",
+      "button": "Add Log"
+    },
+    "recentActivities": {
+      "title": "Recent Activities",
+      "noActivities": "No activities logged yet."
+    }
+  }
+}

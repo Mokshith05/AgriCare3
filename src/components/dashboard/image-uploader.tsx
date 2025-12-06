@@ -10,8 +10,10 @@ import AnalysisResult from './analysis-result';
 import type { AnalyzePhotoAndSuggestTreatmentsOutput } from '@/ai/flows/analyze-photo-and-suggest-treatments';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
+import { useTranslation } from '@/hooks/use-translation';
 
 export default function ImageUploader() {
+  const { t } = useTranslation();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -65,15 +67,15 @@ export default function ImageUploader() {
       } else {
         toast({
           variant: 'destructive',
-          title: 'Analysis Failed',
-          description: response.error || 'An unknown error occurred.',
+          title: t('toast.analysisFailed.title'),
+          description: response.error || t('toast.analysisFailed.description'),
         });
       }
     } catch (error) {
       toast({
         variant: 'destructive',
-        title: 'Error',
-        description: 'Could not analyze image. Please try again.',
+        title: t('toast.error.title'),
+        description: t('toast.error.description'),
       });
     } finally {
       setLoading(false);
@@ -126,11 +128,11 @@ export default function ImageUploader() {
             <>
               <UploadCloud className="h-12 w-12 text-muted-foreground" />
               <div className="flex flex-col items-center">
-                <p className="font-semibold">Drag & drop an image here</p>
-                <p className="text-sm text-muted-foreground">or</p>
+                <p className="font-semibold">{t('imageUploader.dragAndDrop')}</p>
+                <p className="text-sm text-muted-foreground">{t('imageUploader.or')}</p>
                 <Button asChild variant="link" className="text-base text-accent">
                   <label htmlFor="file-upload">
-                    Browse files
+                    {t('imageUploader.browseFiles')}
                     <input
                       id="file-upload"
                       type="file"
@@ -149,12 +151,12 @@ export default function ImageUploader() {
             {loading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Analyzing...
+                {t('imageUploader.analyzingButton')}
               </>
             ) : (
               <>
                 <Camera className="mr-2 h-4 w-4" />
-                Analyze Crop
+                {t('imageUploader.analyzeButton')}
               </>
             )}
           </Button>

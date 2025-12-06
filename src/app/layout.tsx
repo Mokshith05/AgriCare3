@@ -3,6 +3,7 @@ import './globals.css';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { Toaster } from '@/components/ui/toaster';
 import { AppSidebar } from '@/components/layout/sidebar';
+import { LanguageProvider } from '@/contexts/language-context';
 
 export const metadata: Metadata = {
   title: 'AgriProtect AI',
@@ -29,11 +30,13 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased">
-        <SidebarProvider>
-          <AppSidebar />
-          {children}
-          <Toaster />
-        </SidebarProvider>
+        <LanguageProvider>
+          <SidebarProvider>
+            <AppSidebar />
+            {children}
+            <Toaster />
+          </SidebarProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

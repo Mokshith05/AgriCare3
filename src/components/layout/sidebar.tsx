@@ -18,32 +18,35 @@ import {
   ShieldCheck,
   ClipboardList,
 } from 'lucide-react';
+import { useTranslation } from '@/hooks/use-translation';
 
-const menuItems = [
-  {
-    href: '/',
-    label: 'Dashboard',
-    icon: LayoutDashboard,
-  },
-  {
-    href: '/encyclopedia',
-    label: 'Encyclopedia',
-    icon: BookOpen,
-  },
-  {
-    href: '/preventive-care',
-    label: 'Preventive Care',
-    icon: ShieldCheck,
-  },
-  {
-    href: '/logbook',
-    label: 'Field Logbook',
-    icon: ClipboardList,
-  },
-];
 
 export function AppSidebar() {
   const pathname = usePathname();
+  const { t } = useTranslation();
+
+  const menuItems = [
+    {
+      href: '/',
+      label: t('sidebar.dashboard'),
+      icon: LayoutDashboard,
+    },
+    {
+      href: '/encyclopedia',
+      label: t('sidebar.encyclopedia'),
+      icon: BookOpen,
+    },
+    {
+      href: '/preventive-care',
+      label: t('sidebar.preventiveCare'),
+      icon: ShieldCheck,
+    },
+    {
+      href: '/logbook',
+      label: t('sidebar.logbook'),
+      icon: ClipboardList,
+    },
+  ];
 
   return (
     <Sidebar>
@@ -51,7 +54,7 @@ export function AppSidebar() {
         <div className="flex items-center gap-2 p-2">
           <Icons.logo className="h-8 w-8 text-primary" />
           <span className="text-lg font-semibold text-foreground">
-            AgriProtect AI
+            {t('sidebar.appName')}
           </span>
         </div>
       </SidebarHeader>
@@ -79,7 +82,7 @@ export function AppSidebar() {
       </SidebarContent>
       <SidebarFooter>
          <div className="p-4 text-xs text-muted-foreground group-data-[collapsible=icon]:hidden">
-            <p>&copy; {new Date().getFullYear()} AgriProtect AI</p>
+            <p>&copy; {new Date().getFullYear()} {t('sidebar.appName')}</p>
           </div>
       </SidebarFooter>
     </Sidebar>

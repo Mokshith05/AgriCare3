@@ -10,13 +10,24 @@ import {
 import { Button } from '@/components/ui/button';
 import { ChevronDown, Globe } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useLanguage } from '@/contexts/language-context';
 
 type HeaderProps = {
   title: string;
 };
 
+const languages = [
+  { code: 'en', name: 'English' },
+  { code: 'hi', name: 'हिन्दी (Hindi)' },
+  { code: 'te', name: 'తెలుగు (Telugu)' },
+  { code: 'ta', name: 'தமிழ் (Tamil)' },
+];
+
 export default function Header({ title }: HeaderProps) {
   const isMobile = useIsMobile();
+  const { language, setLanguage } = useLanguage();
+
+  const currentLanguage = languages.find((lang) => lang.code === language) || languages[0];
 
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background/80 px-4 backdrop-blur-sm md:px-6">
@@ -27,15 +38,16 @@ export default function Header({ title }: HeaderProps) {
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="gap-2">
               <Globe className="h-4 w-4" />
-              <span>English</span>
+              <span>{currentLanguage.name.split(' ')[0]}</span>
               <ChevronDown className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem>English</DropdownMenuItem>
-            <DropdownMenuItem>हिन्दी (Hindi)</DropdownMenuItem>
-            <DropdownMenuItem>తెలుగు (Telugu)</DropdownMenuItem>
-            <DropdownMenuItem>தமிழ் (Tamil)</DropdownMenuItem>
+            {languages.map((lang) => (
+              <DropdownMenuItem key={lang.code} onSelect={() => setLanguage(lang.code)}>
+                {lang.name}
+              </DropdownMenuItem>
+            ))}
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
