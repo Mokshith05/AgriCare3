@@ -1,91 +1,55 @@
-'use client';
 
-import { useEffect, useState } from 'react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { SidebarInset } from '@/components/ui/sidebar';
 import Header from '@/components/layout/header';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Loader2 } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 import { getEncyclopediaArticle } from '@/app/actions';
 import type { SearchEncyclopediaOutput } from '@/ai/flows/search-encyclopedia';
-import { useLanguage } from '@/contexts/language-context';
-import { useTranslation } from '@/hooks/use-translation';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import translations from '@/locales/en.json'; // Default translations
 
-export default function EncyclopediaArticlePage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
-  const { t } = useTranslation();
-  const { language } = useLanguage();
-  const [article, setArticle] = useState<SearchEncyclopediaOutput | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+async function getArticle(slug: string, language: string) {
+    const query = decodeURIComponent(slug);
+    const response = await getEncyclopediaArticle(query, language);
+    if (response.success && response.data) {
+        return response.data;
+    }
+    return null;
+}
 
-  useEffect(() => {
-    const fetchArticle = async () => {
-      setLoading(true);
-      setError(null);
-      // Decode slug back to search query
-      const query = decodeURIComponent(slug);
-      try {
-        const response = await getEncyclopediaArticle(query, language);
-        if (response.success && response.data) {
-          setArticle(response.data);
-        } else {
-          setError(response.error || t('encyclopedia.error.generic'));
+// Helper for translations on the server
+const getT = (lang: string = 'en') => {
+    const texts = lang === 'hi' ? require('@/locales/hi.json') 
+                : lang === 'ta' ? require('@/locales/ta.json')
+                : lang === 'te' ? require('@/locales/te.json')
+                : require('@/locales/en.json');
+
+    return (key: string): string => {
+        const keys = key.split('.');
+        let result: any = texts;
+        for (const k of keys) {
+            result = result?.[k];
+            if (result === undefined) return key;
         }
-      } catch (e) {
-        setError(t('encyclopedia.error.generic'));
-      } finally {
-        setLoading(false);
-      }
+        return result;
     };
+};
 
-    fetchArticle();
-  }, [slug, language, t]);
 
-  if (loading) {
-    return (
-      <SidebarInset>
-        <div className="flex h-full flex-col">
-          <Header title={t('encyclopedia.title')} />
-          <main className="flex-1 p-4 md:p-6 lg:p-8 flex items-center justify-center">
-            <div className="text-center">
-              <Loader2 className="mx-auto h-12 w-12 animate-spin text-primary" />
-              <p className="mt-4 text-muted-foreground">{t('encyclopedia.loadingArticle')}</p>
-            </div>
-          </main>
-        </div>
-      </SidebarInset>
-    );
-  }
-
-  if (error) {
-    return (
-       <SidebarInset>
-        <div className="flex h-full flex-col">
-          <Header title={t('encyclopedia.title')} />
-          <main className="flex-1 p-4 md:p-6 lg:p-8">
-             <Card className="mt-8 border-destructive bg-destructive/10">
-                <CardHeader>
-                    <CardTitle className="text-destructive">{t('encyclopedia.error.title')}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <p>{error}</p>
-                </CardContent>
-            </Card>
-          </main>
-        </div>
-      </SidebarInset>
-    )
-  }
+export default async function EncyclopediaArticlePage({ params, searchParams }: { params: { slug: string }, searchParams: { lang: string } }) {
+  const { slug } = params;
+  const lang = searchParams.lang || 'en';
+  const t = getT(lang);
+  
+  const article = await getArticle(slug, lang);
 
   if (!article) {
     notFound();
   }
 
-  // Use a generic placeholder, or try to find a relevant one
   const placeholder = PlaceHolderImages.find(p => slug.includes(p.id)) || PlaceHolderImages[0];
 
   return (

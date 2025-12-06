@@ -1,26 +1,27 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/layout/header';
 import { SidebarInset } from '@/components/ui/sidebar';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, Loader2 } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { useTranslation } from '@/hooks/use-translation';
+import { useLanguage } from '@/contexts/language-context';
 
 export default function EncyclopediaPage() {
   const { t } = useTranslation();
   const router = useRouter();
+  const { language } = useLanguage();
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (!searchQuery.trim()) return;
     const slug = encodeURIComponent(searchQuery.trim());
-    router.push(`/encyclopedia/${slug}`);
+    // Pass language as a query parameter
+    router.push(`/encyclopedia/${slug}?lang=${language}`);
   };
 
   return (
