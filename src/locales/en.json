@@ -5,7 +5,8 @@
     "encyclopedia": "Encyclopedia",
     "preventiveCare": "Preventive Care",
     "logbook": "Field Logbook",
-    "cropAdvisor": "Crop Advisor"
+    "cropAdvisor": "Crop Advisor",
+    "profitCalculator": "Profit Calculator"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -182,6 +183,52 @@
       "plantingSeason": "Planting Season",
       "organicFertilizers": "Recommended Organic Fertilizers",
       "yieldNote": "Expected Yield Note"
+    }
+  },
+  "profitCalculator": {
+    "title": "Profit Calculator",
+    "pageTitle": "Profit Calculator",
+    "pageDescription": "Estimate your potential revenue and profit for a crop.",
+    "form": {
+      "title": "Calculation Inputs",
+      "description": "Enter the details for your crop to calculate the profit.",
+      "cropName": {
+        "label": "Crop Name",
+        "placeholder": "e.g., Rice"
+      },
+      "acreage": {
+        "label": "Total Acreage"
+      },
+      "yield": {
+        "label": "Yield (kg/acre)"
+      },
+      "price": {
+        "label": "Market Price (₱/kg)"
+      },
+      "costs": {
+        "label": "Total Costs (₱)"
+      },
+      "submitButton": "Calculate Profit",
+      "loadingButton": "Calculating..."
+    },
+    "loadingText": "Calculating your potential profit...",
+    "placeholder": {
+      "title": "Profit Calculation",
+      "description": "Your profit estimates will appear here after calculation."
+    },
+    "results": {
+      "title": "Profit Calculation",
+      "totalYield": "Total Yield",
+      "totalRevenue": "Total Revenue",
+      "profit": "Profit",
+      "profitMargin": "Profit Margin",
+      "summaryTitle": "AI Financial Summary"
+    },
+    "error": {
+      "invalidInputTitle": "Invalid Input",
+      "invalidInputDesc": "Please fill out all fields with valid numbers.",
+      "calculationFailedTitle": "Calculation Failed",
+      "calculationFailedDesc": "Could not calculate profit at this time. Please try again."
     }
   }
 }

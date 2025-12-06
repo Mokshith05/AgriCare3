@@ -5,7 +5,8 @@
     "encyclopedia": "विश्वकोश",
     "preventiveCare": "निवारक देखभाल",
     "logbook": "फील्ड लॉगबुक",
-    "cropAdvisor": "फसल सलाहकार"
+    "cropAdvisor": "फसल सलाहकार",
+    "profitCalculator": "लाभ कैलकुलेटर"
   },
   "dashboard": {
     "title": "डैशबोर्ड",
@@ -182,6 +183,52 @@
       "plantingSeason": "बुवाई का मौसम",
       "organicFertilizers": "अनुशंसित जैविक उर्वरक",
       "yieldNote": "अपेक्षित उपज नोट"
+    }
+  },
+  "profitCalculator": {
+    "title": "लाभ कैलकुलेटर",
+    "pageTitle": "लाभ कैलकुलेटर",
+    "pageDescription": "एक फसल के लिए अपनी संभावित राजस्व और लाभ का अनुमान लगाएं।",
+    "form": {
+      "title": "गणना इनपुट",
+      "description": "लाभ की गणना के लिए अपनी फसल का विवरण दर्ज करें।",
+      "cropName": {
+        "label": "फसल का नाम",
+        "placeholder": "जैसे, चावल"
+      },
+      "acreage": {
+        "label": "कुल एकड़"
+      },
+      "yield": {
+        "label": "उपज (किग्रा/एकड़)"
+      },
+      "price": {
+        "label": "बाजार मूल्य (₱/किग्रा)"
+      },
+      "costs": {
+        "label": "कुल लागत (₱)"
+      },
+      "submitButton": "लाभ की गणना करें",
+      "loadingButton": "गणना हो रही है..."
+    },
+    "loadingText": "आपके संभावित लाभ की गणना हो रही है...",
+    "placeholder": {
+      "title": "लाभ गणना",
+      "description": "गणना के बाद आपके लाभ का अनुमान यहां दिखाई देगा।"
+    },
+    "results": {
+      "title": "लाभ गणना",
+      "totalYield": "कुल उपज",
+      "totalRevenue": "कुल राजस्व",
+      "profit": "लाभ",
+      "profitMargin": "लाभ मार्जिन",
+      "summaryTitle": "एआई वित्तीय सारांश"
+    },
+    "error": {
+      "invalidInputTitle": "अमान्य इनपुट",
+      "invalidInputDesc": "कृपया सभी फ़ील्ड वैध संख्याओं से भरें।",
+      "calculationFailedTitle": "गणना विफल",
+      "calculationFailedDesc": "इस समय लाभ की गणना नहीं की जा सकी। कृपया पुनः प्रयास करें।"
     }
   }
 }

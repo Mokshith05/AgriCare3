@@ -5,7 +5,8 @@
     "encyclopedia": "విజ్ఞాన సర్వస్వం",
     "preventiveCare": "నివారణ సంరక్షణ",
     "logbook": "ఫీల్డ్ లాగ్‌బుక్",
-    "cropAdvisor": "పంట సలహాదారు"
+    "cropAdvisor": "పంట సలహాదారు",
+    "profitCalculator": "లాభం కాలిక్యులేటర్"
   },
   "dashboard": {
     "title": "డాష్‌బోర్డ్",
@@ -182,6 +183,52 @@
       "plantingSeason": "నాటడం కాలం",
       "organicFertilizers": "సిఫార్సు చేయబడిన సేంద్రీయ ఎరువులు",
       "yieldNote": "ఆశించిన దిగుబడి గమనిక"
+    }
+  },
+  "profitCalculator": {
+    "title": "లాభం కాలిక్యులేటర్",
+    "pageTitle": "లాభం కాలిక్యులేటర్",
+    "pageDescription": "ఒక పంట కోసం మీ సంభావ్య ఆదాయం మరియు లాభం అంచనా వేయండి.",
+    "form": {
+      "title": "గణన ఇన్‌పుట్‌లు",
+      "description": "లాభం లెక్కించడానికి మీ పంట వివరాలను నమోదు చేయండి.",
+      "cropName": {
+        "label": "పంట పేరు",
+        "placeholder": "ఉదా., వరి"
+      },
+      "acreage": {
+        "label": "మొత్తం ఎకరేజ్"
+      },
+      "yield": {
+        "label": "దిగుబడి (కిలోలు/ఎకరా)"
+      },
+      "price": {
+        "label": "మార్కెట్ ధర (₱/కిలో)"
+      },
+      "costs": {
+        "label": "మొత్తం ఖర్చులు (₱)"
+      },
+      "submitButton": "లాభం లెక్కించండి",
+      "loadingButton": "లెక్కిస్తోంది..."
+    },
+    "loadingText": "మీ సంభావ్య లాభం లెక్కిస్తోంది...",
+    "placeholder": {
+      "title": "లాభం గణన",
+      "description": "గణన తర్వాత మీ లాభం అంచనాలు ఇక్కడ కనిపిస్తాయి."
+    },
+    "results": {
+      "title": "లాభం గణన",
+      "totalYield": "మొత్తం దిగుబడి",
+      "totalRevenue": "మొత్తం ఆదాయం",
+      "profit": "లాభం",
+      "profitMargin": "లాభం మార్జిన్",
+      "summaryTitle": "AI ఆర్థిక సారాంశం"
+    },
+    "error": {
+      "invalidInputTitle": "చెల్లని ఇన్‌పుట్",
+      "invalidInputDesc": "దయచేసి అన్ని ఫీల్డ్‌లను చెల్లుబాటు అయ్యే సంఖ్యలతో నింపండి.",
+      "calculationFailedTitle": "గణన విఫలమైంది",
+      "calculationFailedDesc": "ప్రస్తుతం లాభం లెక్కించడం సాధ్యం కాలేదు. దయచేసి మళ్లీ ప్రయత్నించండి."
     }
   }
 }

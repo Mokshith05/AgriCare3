@@ -9,6 +9,12 @@ import {
   type RecommendCropsInput,
   type RecommendCropsOutput,
 } from '@/ai/flows/recommend-crops';
+import {
+  calculateProfit,
+  type CalculateProfitInput,
+  type CalculateProfitOutput,
+} from '@/ai/flows/calculate-profit';
+
 
 export async function analyzeCropImage(
   photoDataUri: string,
@@ -55,6 +61,25 @@ export async function getCropRecommendations(
     return {
       success: false,
       error: 'An unexpected error occurred while generating recommendations.',
+    };
+  }
+}
+
+export async function calculateCropProfit(
+  input: CalculateProfitInput
+): Promise<{
+  success: boolean;
+  data?: CalculateProfitOutput;
+  error?: string;
+}> {
+  try {
+    const result = await calculateProfit(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error calculating crop profit:', error);
+    return {
+      success: false,
+      error: 'An unexpected error occurred while calculating the profit.',
     };
   }
 }

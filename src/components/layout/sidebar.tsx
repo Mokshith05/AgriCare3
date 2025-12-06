@@ -18,6 +18,7 @@ import {
   ShieldCheck,
   ClipboardList,
   Leaf,
+  Calculator,
 } from 'lucide-react';
 import { useTranslation } from '@/hooks/use-translation';
 
@@ -36,6 +37,11 @@ export function AppSidebar() {
       href: '/crop-advisor',
       label: t('sidebar.cropAdvisor'),
       icon: Leaf,
+    },
+    {
+      href: '/profit-calculator',
+      label: t('sidebar.profitCalculator'),
+      icon: Calculator,
     },
     {
       href: '/encyclopedia',
