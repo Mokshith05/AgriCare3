@@ -33,7 +33,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setLanguage: handleSetLanguage,
   };
 
-  // By rendering children only on the client, we prevent the hydration mismatch.
+  // By returning null on the server and only rendering children on the client, we prevent hydration mismatch.
   if (!isClient) {
     return null;
   }
