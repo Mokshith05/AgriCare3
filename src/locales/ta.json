@@ -35,10 +35,23 @@
     "analyzingButton": "பகுப்பாய்வு செய்யப்படுகிறது..."
   },
   "analysis": {
-    "reportTitle": "பகுப்பாய்வு அறிக்கை",
+    "reportTitle": "பயிர் சுகாதார அறிக்கை",
+    "reportSubtitle": "அக்ரிபுரொடெக்ட் AI மூலம் உருவாக்கப்பட்டது",
     "newAnalysisButton": "புதிய பகுப்பாய்வு",
-    "aiAnalysisTitle": "AI பகுப்பாய்வு",
-    "treatmentSuggestionsTitle": "சிகிச்சை பரிந்துரைகள்"
+    "aiSummaryTitle": "AI சுருக்கம்",
+    "diagnosisTitle": "நோய் கண்டறிதல்",
+    "severity": {
+      "low": "குறைந்த",
+      "medium": "நடுத்தர",
+      "high": "அதிகம்"
+    },
+    "immediateActionsTitle": "உடனடி நடவடிக்கைகள்",
+    "mediumTermActionsTitle": "நடுத்தர கால திட்டம்",
+    "preventiveMeasuresTitle": "தடுப்பு நடவடிக்கைகள்",
+    "suggestedControlsTitle": "பரிந்துரைக்கப்பட்ட கட்டுப்பாடுகள்",
+    "furtherTestingTitle": "மேலும் சோதனை",
+    "usageLabel": "பயன்பாடு",
+    "notesLabel": "குறிப்புகள்"
   },
   "toast": {
     "analysisFailed": {

@@ -35,10 +35,23 @@
     "analyzingButton": "విశ్లేషిస్తోంది..."
   },
   "analysis": {
-    "reportTitle": "విశ్లేషణ నివేదిక",
+    "reportTitle": "పంట ఆరోగ్య నివేదిక",
+    "reportSubtitle": "అగ్రిప్రొటెక్ట్ AI ద్వారా రూపొందించబడింది",
     "newAnalysisButton": "కొత్త విశ్లేషణ",
-    "aiAnalysisTitle": "AI విశ్లేషణ",
-    "treatmentSuggestionsTitle": "చికిత్స సూచనలు"
+    "aiSummaryTitle": "AI సారాంశం",
+    "diagnosisTitle": "రోగ నిర్ధారణ",
+    "severity": {
+      "low": "తక్కువ",
+      "medium": "మధ్యస్థం",
+      "high": "అధికం"
+    },
+    "immediateActionsTitle": "తక్షణ చర్యలు",
+    "mediumTermActionsTitle": "మధ్య-కాల ప్రణాళిక",
+    "preventiveMeasuresTitle": "నివారణ చర్యలు",
+    "suggestedControlsTitle": "సూచించిన నియంత్రణలు",
+    "furtherTestingTitle": "మరింత పరీక్ష",
+    "usageLabel": "వాడుక",
+    "notesLabel": "గమనికలు"
   },
   "toast": {
     "analysisFailed": {

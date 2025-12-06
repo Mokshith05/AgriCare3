@@ -6,7 +6,8 @@ import {
 } from '@/ai/flows/analyze-photo-and-suggest-treatments';
 
 export async function analyzeCropImage(
-  photoDataUri: string
+  photoDataUri: string,
+  language: string
 ): Promise<{
   success: boolean;
   data?: AnalyzePhotoAndSuggestTreatmentsOutput;
@@ -18,6 +19,7 @@ export async function analyzeCropImage(
     }
     const analysisResult = await analyzePhotoAndSuggestTreatments({
       photoDataUri,
+      language,
     });
     return {
       success: true,

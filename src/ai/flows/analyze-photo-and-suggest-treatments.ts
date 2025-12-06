@@ -17,13 +17,43 @@ const AnalyzePhotoAndSuggestTreatmentsInputSchema = z.object({
     .describe(
       "A photo of the affected crop, as a data URI that must include a MIME type and use Base64 encoding. Expected format: 'data:<mimetype>;base64,<encoded_data>'."
     ),
+  language: z.string().describe('The language for the analysis report (e.g., "en", "hi").'),
+  description: z.string().optional().describe("A farmer's description of the issue, if any."),
 });
 export type AnalyzePhotoAndSuggestTreatmentsInput = z.infer<typeof AnalyzePhotoAndSuggestTreatmentsInputSchema>;
 
-const AnalyzePhotoAndSuggestTreatmentsOutputSchema = z.object({
-  analysis: z.string().describe('The analysis of the image.'),
-  treatmentSuggestions: z.string().describe('Specific treatment suggestions tailored to the identified issues.'),
+const DiagnosisSchema = z.object({
+  name: z.string().describe('The identified disease, pest, or nutrient deficiency.'),
+  reasoning: z.string().describe('A brief, 1-2 line explanation for the diagnosis.'),
+  severity: z.enum(['low', 'medium', 'high']).describe('The estimated severity of the issue.'),
+  confidence: z.number().min(0).max(1).describe('The confidence level of the diagnosis (0.0 to 1.0).'),
 });
+
+const ControlSuggestionSchema = z.object({
+  name: z.string().describe('The common name of the suggested pesticide, biocontrol, or fertilizer.'),
+  dose_or_usage: z.string().describe("Example usage, such as '2 g/L' or 'apply as foliar spray every 7 days'."),
+  notes: z.string().describe('Important safety notes, precautions, or application tips.'),
+});
+
+const MetadataSchema = z.object({
+  crop: z.string().describe("The type of crop, if identifiable (e.g., 'Tomato'). 'Unknown' if not."),
+  approx_affected_area_pct: z.string().describe("An estimated percentage of the affected area, or 'unknown'."),
+  timestamp_utc: z.string().describe('The ISO 8601 timestamp of when the analysis was performed.'),
+  model: z.string().describe('The name of the AI model used for the analysis.'),
+});
+
+
+const AnalyzePhotoAndSuggestTreatmentsOutputSchema = z.object({
+  diagnoses: z.array(DiagnosisSchema).describe('A list of diagnosed issues.'),
+  immediate_actions: z.array(z.string()).describe('A list of 2-4 practical steps the farmer should perform today.'),
+  medium_term_actions: z.array(z.string()).describe('A list of medium-term treatments, fertilizing schedules, or monitoring actions.'),
+  preventive_measures: z.array(z.string()).describe('A list of preventive measures, including notes on humidity, irrigation, or spacing.'),
+  suggested_controls: z.array(ControlSuggestionSchema).describe('A list of suggested chemical or biological controls (not prescriptions).'),
+  additional_recommendations: z.array(z.string()).describe('A list of recommended additional images or tests if the diagnosis is uncertain.'),
+  metadata: MetadataSchema.describe('Metadata about the analysis.'),
+  summary: z.string().describe('A 2-3 sentence human-readable summary of the entire analysis.'),
+});
+
 export type AnalyzePhotoAndSuggestTreatmentsOutput = z.infer<typeof AnalyzePhotoAndSuggestTreatmentsOutputSchema>;
 
 export async function analyzePhotoAndSuggestTreatments(
@@ -36,15 +66,31 @@ const prompt = ai.definePrompt({
   name: 'analyzePhotoAndSuggestTreatmentsPrompt',
   input: {schema: AnalyzePhotoAndSuggestTreatmentsInputSchema},
   output: {schema: AnalyzePhotoAndSuggestTreatmentsOutputSchema},
-  prompt: `You are an AI assistant specializing in agricultural advice for farmers.
-  A farmer will upload a photo of their crop, and you will analyze the photo to identify potential diseases, pests, or other issues.
-  Based on your analysis, you will suggest specific treatment options, drawing from your knowledge of organic and sustainable farming practices, as well as information from Indian government resources like ICAR and Kisan Suvidha.
+  prompt: `SYSTEM: You are AgriAssist, an expert agronomist AI specializing in plant health.
+Analyze the provided crop image and/or description to identify issues and provide a comprehensive action plan.
 
-  Analyze the following photo:
-  {{media url=photoDataUri}}
+Analyze this crop image and return:
+1) Diagnosed issue(s) (disease/pest/nutrient deficiency) with short reasoning.
+2) Severity (low/medium/high) and confidence (0.0–1.0).
+3) Immediate actions (2–4 practical steps) the farmer should perform today.
+4) Medium-term actions (treatments, fertilizers, monitoring) and estimated timeline.
+5) Preventive measures and environmental notes (humidity, irrigation, spacing).
+6) Suggested chemical or biological controls (common names + typical concentrations/usage notes) — label them as "suggested" not prescriptions.
+7) If diagnosis is uncertain, list up to 3 recommended additional images or tests.
 
-  Provide an analysis of the image and suggest treatments, and set the treatmentSuggestions field appropriately.
-  The treatment suggestions must include specific steps and products that can be used.
+IMPORTANT: Generate the entire JSON output and the summary translated into the following language: {{{language}}}
+
+Return results in the EXACT JSON schema specified.
+
+{{#if photoDataUri}}
+USER: Analyze the attached image.
+Photo: {{media url=photoDataUri}}
+{{/if}}
+{{#if description}}
+USER: A farmer has provided the following description: {{{description}}}
+{{else}}
+Image not provided. Diagnose based on the farmer's description.
+{{/if}}
 `,
 });
 

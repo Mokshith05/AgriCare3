@@ -11,9 +11,11 @@ import type { AnalyzePhotoAndSuggestTreatmentsOutput } from '@/ai/flows/analyze-
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { useTranslation } from '@/hooks/use-translation';
+import { useLanguage } from '@/contexts/language-context';
 
 export default function ImageUploader() {
   const { t } = useTranslation();
+  const { language } = useLanguage();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -61,7 +63,7 @@ export default function ImageUploader() {
     setLoading(true);
     setResult(null);
     try {
-      const response = await analyzeCropImage(imagePreview);
+      const response = await analyzeCropImage(imagePreview, language);
       if (response.success && response.data) {
         setResult(response.data);
       } else {
@@ -88,8 +90,8 @@ export default function ImageUploader() {
     setResult(null);
   };
 
-  if (result) {
-    return <AnalysisResult result={result} imagePreview={imagePreview!} onReset={handleClear} />;
+  if (result && imagePreview) {
+    return <AnalysisResult result={result} imagePreview={imagePreview} onReset={handleClear} />;
   }
 
   return (

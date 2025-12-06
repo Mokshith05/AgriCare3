@@ -35,10 +35,23 @@
     "analyzingButton": "विश्लेषण हो रहा है..."
   },
   "analysis": {
-    "reportTitle": "विश्लेषण रिपोर्ट",
+    "reportTitle": "फसल स्वास्थ्य रिपोर्ट",
+    "reportSubtitle": "एग्रीप्रोटेक्ट एआई द्वारा उत्पन्न",
     "newAnalysisButton": "नया विश्लेषण",
-    "aiAnalysisTitle": "एआई विश्लेषण",
-    "treatmentSuggestionsTitle": "उपचार सुझाव"
+    "aiSummaryTitle": "एआई सारांश",
+    "diagnosisTitle": "निदान",
+    "severity": {
+      "low": "कम",
+      "medium": "मध्यम",
+      "high": "उच्च"
+    },
+    "immediateActionsTitle": "तत्काल कार्रवाई",
+    "mediumTermActionsTitle": "मध्यम-अवधि की योजना",
+    "preventiveMeasuresTitle": "निवारक उपाय",
+    "suggestedControlsTitle": "सुझाए गए नियंत्रण",
+    "furtherTestingTitle": "आगे का परीक्षण",
+    "usageLabel": "उपयोग",
+    "notesLabel": "टिप्पणियाँ"
   },
   "toast": {
     "analysisFailed": {
