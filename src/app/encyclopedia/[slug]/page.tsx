@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { SidebarInset } from '@/components/ui/sidebar';
 import Header from '@/components/layout/header';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle, Loader2 } from 'lucide-react';
 import { getEncyclopediaArticle } from '@/app/actions';
 import type { SearchEncyclopediaOutput } from '@/ai/flows/search-encyclopedia';
@@ -15,6 +15,7 @@ import { useTranslation } from '@/hooks/use-translation';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export default function EncyclopediaArticlePage({ params }: { params: { slug: string } }) {
+  const { slug } = params;
   const { t } = useTranslation();
   const { language } = useLanguage();
   const [article, setArticle] = useState<SearchEncyclopediaOutput | null>(null);
@@ -26,7 +27,7 @@ export default function EncyclopediaArticlePage({ params }: { params: { slug: st
       setLoading(true);
       setError(null);
       // Decode slug back to search query
-      const query = decodeURIComponent(params.slug);
+      const query = decodeURIComponent(slug);
       try {
         const response = await getEncyclopediaArticle(query, language);
         if (response.success && response.data) {
@@ -42,7 +43,7 @@ export default function EncyclopediaArticlePage({ params }: { params: { slug: st
     };
 
     fetchArticle();
-  }, [params.slug, language, t]);
+  }, [slug, language, t]);
 
   if (loading) {
     return (
@@ -85,7 +86,7 @@ export default function EncyclopediaArticlePage({ params }: { params: { slug: st
   }
 
   // Use a generic placeholder, or try to find a relevant one
-  const placeholder = PlaceHolderImages.find(p => params.slug.includes(p.id)) || PlaceHolderImages[0];
+  const placeholder = PlaceHolderImages.find(p => slug.includes(p.id)) || PlaceHolderImages[0];
 
   return (
     <SidebarInset>
@@ -96,7 +97,7 @@ export default function EncyclopediaArticlePage({ params }: { params: { slug: st
             <div className="mb-8">
               <h1 className="mb-2 text-4xl font-bold tracking-tight text-primary">{article.title}</h1>
               <Badge variant={article.category === 'Disease' ? 'destructive' : 'secondary'}>
-                {article.category}
+                {t(`encyclopedia.categories.${article.category.toLowerCase()}`)}
               </Badge>
             </div>
 

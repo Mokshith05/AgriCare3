@@ -79,6 +79,12 @@
     "error": {
       "title": "खोज विफल",
       "generic": "इस समय जानकारी प्राप्त नहीं की जा सकी। कृपया कोई अन्य खोज प्रयास करें।"
+    },
+    "categories": {
+      "disease": "रोग",
+      "pest": "कीट",
+      "nutrientdeficiency": "पोषक तत्वों की कमी",
+      "other": "अन्य"
     }
   },
   "preventiveCare": {

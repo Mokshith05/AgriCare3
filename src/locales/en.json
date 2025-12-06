@@ -79,6 +79,12 @@
     "error": {
       "title": "Search Failed",
       "generic": "Could not fetch information at this time. Please try another search."
+    },
+    "categories": {
+      "disease": "Disease",
+      "pest": "Pest",
+      "nutrientdeficiency": "Nutrient Deficiency",
+      "other": "Other"
     }
   },
   "preventiveCare": {
