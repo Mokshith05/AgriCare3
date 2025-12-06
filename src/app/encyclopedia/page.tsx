@@ -1,16 +1,11 @@
 'use client';
 
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/layout/header';
 import { SidebarInset } from '@/components/ui/sidebar';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Search } from 'lucide-react';
 import { useTranslation } from '@/hooks/use-translation';
-import { useLanguage } from '@/contexts/language-context';
 import { ENCYCLOPEDIA_ARTICLES, slugify } from '@/lib/data';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -18,19 +13,6 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 export default function EncyclopediaPage() {
   const { t, language } = useTranslation();
   const router = useRouter();
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!searchQuery.trim()) return;
-    const slug = encodeURIComponent(searchQuery.trim());
-    router.push(`/encyclopedia/${slug}?lang=${language}`);
-  };
-
-  const filteredArticles = ENCYCLOPEDIA_ARTICLES.filter(article => 
-    article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    t(`encyclopedia.articles.${slugify(article.title)}.title`).toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
   return (
     <SidebarInset>
@@ -43,25 +25,10 @@ export default function EncyclopediaPage() {
               <p className="mb-8 text-lg text-muted-foreground">
                 {t('encyclopedia.pageDescription')}
               </p>
-              <div className="mx-auto max-w-2xl">
-                 <form onSubmit={handleSearch} className="flex w-full items-center space-x-2">
-                    <Input
-                        type="text"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder={t('encyclopedia.searchPlaceholder')}
-                        className="flex-1 text-base"
-                    />
-                    <Button type="submit">
-                        <Search className="mr-2 h-4 w-4" />
-                        {t('encyclopedia.searchButton')}
-                    </Button>
-                </form>
-              </div>
             </div>
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {filteredArticles.map(article => {
+              {ENCYCLOPEDIA_ARTICLES.map(article => {
                 const placeholder = PlaceHolderImages.find(p => p.id === article.imageId);
                 return (
                   <Card 
