@@ -4,7 +4,6 @@ import { SidebarProvider } from '@/components/ui/sidebar';
 import { Toaster } from '@/components/ui/toaster';
 import { AppSidebar } from '@/components/layout/sidebar';
 import { LanguageProvider } from '@/contexts/language-context';
-import ChatbotWidget from '@/components/chatbot/chatbot-widget';
 
 export const metadata: Metadata = {
   title: 'AgriProtect AI',
@@ -36,7 +35,6 @@ export default function RootLayout({
             <AppSidebar />
             {children}
             <Toaster />
-            <ChatbotWidget />
           </SidebarProvider>
         </LanguageProvider>
       </body>
