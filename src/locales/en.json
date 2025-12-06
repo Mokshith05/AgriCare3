@@ -67,7 +67,19 @@
   },
   "encyclopedia": {
     "title": "Encyclopedia",
-    "pageTitle": "Crop Encyclopedia"
+    "pageTitle": "AI Crop Encyclopedia",
+    "pageDescription": "Search for any crop disease, pest, or issue to get real-time information.",
+    "searchPlaceholder": "e.g., Tomato Blight, Aphids, etc.",
+    "searchButton": "Search",
+    "searchExamples": "Try searching for 'Powdery Mildew' or 'Spider Mites'.",
+    "loadingArticle": "Loading article...",
+    "symptoms": "Symptoms",
+    "prevention": "Prevention",
+    "organicTreatment": "Organic Treatment",
+    "error": {
+      "title": "Search Failed",
+      "generic": "Could not fetch information at this time. Please try another search."
+    }
   },
   "preventiveCare": {
     "title": "Preventive Care",

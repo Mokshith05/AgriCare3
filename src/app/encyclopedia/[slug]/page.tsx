@@ -1,32 +1,96 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { ENCYCLOPEDIA_ARTICLES } from '@/lib/data';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { SidebarInset } from '@/components/ui/sidebar';
 import Header from '@/components/layout/header';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { CheckCircle } from 'lucide-react';
-
-export async function generateStaticParams() {
-  return ENCYCLOPEDIA_ARTICLES.map((article) => ({
-    slug: article.slug,
-  }));
-}
+import { CheckCircle, Loader2 } from 'lucide-react';
+import { getEncyclopediaArticle } from '@/app/actions';
+import type { SearchEncyclopediaOutput } from '@/ai/flows/search-encyclopedia';
+import { useLanguage } from '@/contexts/language-context';
+import { useTranslation } from '@/hooks/use-translation';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export default function EncyclopediaArticlePage({ params }: { params: { slug: string } }) {
-  const article = ENCYCLOPEDIA_ARTICLES.find((a) => a.slug === params.slug);
+  const { t } = useTranslation();
+  const { language } = useLanguage();
+  const [article, setArticle] = useState<SearchEncyclopediaOutput | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchArticle = async () => {
+      setLoading(true);
+      setError(null);
+      // Decode slug back to search query
+      const query = decodeURIComponent(params.slug);
+      try {
+        const response = await getEncyclopediaArticle(query, language);
+        if (response.success && response.data) {
+          setArticle(response.data);
+        } else {
+          setError(response.error || t('encyclopedia.error.generic'));
+        }
+      } catch (e) {
+        setError(t('encyclopedia.error.generic'));
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchArticle();
+  }, [params.slug, language, t]);
+
+  if (loading) {
+    return (
+      <SidebarInset>
+        <div className="flex h-full flex-col">
+          <Header title={t('encyclopedia.title')} />
+          <main className="flex-1 p-4 md:p-6 lg:p-8 flex items-center justify-center">
+            <div className="text-center">
+              <Loader2 className="mx-auto h-12 w-12 animate-spin text-primary" />
+              <p className="mt-4 text-muted-foreground">{t('encyclopedia.loadingArticle')}</p>
+            </div>
+          </main>
+        </div>
+      </SidebarInset>
+    );
+  }
+
+  if (error) {
+    return (
+       <SidebarInset>
+        <div className="flex h-full flex-col">
+          <Header title={t('encyclopedia.title')} />
+          <main className="flex-1 p-4 md:p-6 lg:p-8">
+             <Card className="mt-8 border-destructive bg-destructive/10">
+                <CardHeader>
+                    <CardTitle className="text-destructive">{t('encyclopedia.error.title')}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <p>{error}</p>
+                </CardContent>
+            </Card>
+          </main>
+        </div>
+      </SidebarInset>
+    )
+  }
 
   if (!article) {
     notFound();
   }
 
-  const placeholder = PlaceHolderImages.find(p => p.id === article.imageId);
+  // Use a generic placeholder, or try to find a relevant one
+  const placeholder = PlaceHolderImages.find(p => params.slug.includes(p.id)) || PlaceHolderImages[0];
 
   return (
     <SidebarInset>
       <div className="flex h-full flex-col">
-        <Header title="Encyclopedia" />
+        <Header title={t('encyclopedia.title')} />
         <main className="flex-1 p-4 md:p-6 lg:p-8">
           <article>
             <div className="mb-8">
@@ -43,7 +107,7 @@ export default function EncyclopediaArticlePage({ params }: { params: { slug: st
                   <CardContent className="p-6">
                     <div className="space-y-6">
                       <section>
-                        <h2 className="mb-3 text-2xl font-semibold">Symptoms</h2>
+                        <h2 className="mb-3 text-2xl font-semibold">{t('encyclopedia.symptoms')}</h2>
                         <ul className="space-y-2">
                           {article.symptoms.map((symptom, i) => (
                             <li key={i} className="flex items-start gap-2">
@@ -54,7 +118,7 @@ export default function EncyclopediaArticlePage({ params }: { params: { slug: st
                         </ul>
                       </section>
                       <section>
-                        <h2 className="mb-3 text-2xl font-semibold">Prevention</h2>
+                        <h2 className="mb-3 text-2xl font-semibold">{t('encyclopedia.prevention')}</h2>
                          <ul className="space-y-2">
                           {article.prevention.map((item, i) => (
                             <li key={i} className="flex items-start gap-2">
@@ -65,7 +129,7 @@ export default function EncyclopediaArticlePage({ params }: { params: { slug: st
                         </ul>
                       </section>
                       <section>
-                        <h2 className="mb-3 text-2xl font-semibold">Organic Treatment</h2>
+                        <h2 className="mb-3 text-2xl font-semibold">{t('encyclopedia.organicTreatment')}</h2>
                          <ul className="space-y-2">
                           {article.treatment.map((item, i) => (
                             <li key={i} className="flex items-start gap-2">
