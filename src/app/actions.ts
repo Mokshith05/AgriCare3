@@ -4,6 +4,11 @@ import {
   analyzePhotoAndSuggestTreatments,
   type AnalyzePhotoAndSuggestTreatmentsOutput,
 } from '@/ai/flows/analyze-photo-and-suggest-treatments';
+import {
+  recommendCrops,
+  type RecommendCropsInput,
+  type RecommendCropsOutput,
+} from '@/ai/flows/recommend-crops';
 
 export async function analyzeCropImage(
   photoDataUri: string,
@@ -31,6 +36,25 @@ export async function analyzeCropImage(
       success: false,
       error:
         'An unexpected error occurred while analyzing the image. Please try again.',
+    };
+  }
+}
+
+export async function getCropRecommendations(
+  input: RecommendCropsInput
+): Promise<{
+  success: boolean;
+  data?: RecommendCropsOutput;
+  error?: string;
+}> {
+  try {
+    const result = await recommendCrops(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error getting crop recommendations:', error);
+    return {
+      success: false,
+      error: 'An unexpected error occurred while generating recommendations.',
     };
   }
 }

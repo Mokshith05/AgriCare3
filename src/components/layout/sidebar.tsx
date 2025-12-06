@@ -17,6 +17,7 @@ import {
   BookOpen,
   ShieldCheck,
   ClipboardList,
+  Leaf,
 } from 'lucide-react';
 import { useTranslation } from '@/hooks/use-translation';
 
@@ -30,6 +31,11 @@ export function AppSidebar() {
       href: '/',
       label: t('sidebar.dashboard'),
       icon: LayoutDashboard,
+    },
+    {
+      href: '/crop-advisor',
+      label: t('sidebar.cropAdvisor'),
+      icon: Leaf,
     },
     {
       href: '/encyclopedia',

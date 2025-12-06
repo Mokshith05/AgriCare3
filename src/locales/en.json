@@ -4,7 +4,8 @@
     "dashboard": "Dashboard",
     "encyclopedia": "Encyclopedia",
     "preventiveCare": "Preventive Care",
-    "logbook": "Field Logbook"
+    "logbook": "Field Logbook",
+    "cropAdvisor": "Crop Advisor"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -131,10 +132,56 @@
       "noActivities": "No activities logged yet."
     }
   },
-  "chatbot": {
-    "title": "AgriBot Assistant",
-    "welcomeMessage": "Hello! I'm AgriBot. How can I help you with your crops today?",
-    "inputPlaceholder": "Ask about your crops...",
-    "errorMessage": "Sorry, I'm having trouble connecting right now. Please try again later."
+  "advisor": {
+    "title": "Crop Advisor",
+    "form": {
+      "title": "Farm Data",
+      "description": "The more details you provide, the better the recommendation.",
+      "location": {
+        "label": "Location",
+        "placeholder": "e.g., Central Valley, California",
+        "helper": "City, State, or Region."
+      },
+      "soilType": {
+        "label": "Soil Type",
+        "placeholder": "Select a soil type",
+        "helper": "Predominant soil type in your field."
+      },
+      "cropRotation": {
+        "label": "Past Crop Rotation",
+        "placeholder": "e.g., Corn, Soybeans, Fallow",
+        "helper": "List the crops grown in the last 1-3 seasons."
+      },
+      "additionalInfo": {
+        "label": "Additional Information",
+        "placeholder": "e.g., Access to irrigation, specific market demands, etc.",
+        "helper": "Any other details like climate, water access, etc."
+      },
+      "submitButton": "Get Recommendation",
+      "loadingButton": "Getting Recommendation..."
+    },
+    "soilTypes": {
+      "loamy": "Loamy",
+      "sandy": "Sandy",
+      "clay": "Clay",
+      "silty": "Silty",
+      "peaty": "Peaty",
+      "chalky": "Chalky"
+    },
+    "loadingText": "Analyzing your farm data to generate recommendations...",
+    "error": {
+      "title": "Recommendation Failed",
+      "default": "Could not generate recommendations at this time. Please try again."
+    },
+    "results": {
+      "title": "Crop Recommendations",
+      "description": "AI-powered recommendations based on your farm data.",
+      "resetButton": "Start New Recommendation",
+      "summaryTitle": "AI Summary",
+      "suitability": "Why it's suitable",
+      "plantingSeason": "Planting Season",
+      "organicFertilizers": "Recommended Organic Fertilizers",
+      "yieldNote": "Expected Yield Note"
+    }
   }
 }
