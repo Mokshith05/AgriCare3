@@ -14,10 +14,6 @@ import {
   type CalculateProfitInput,
   type CalculateProfitOutput,
 } from '@/ai/flows/calculate-profit';
-import {
-  searchEncyclopedia,
-  type SearchEncyclopediaOutput,
-} from '@/ai/flows/search-encyclopedia';
 
 export async function analyzeCropImage(
   photoDataUri: string,
@@ -83,26 +79,6 @@ export async function calculateCropProfit(
     return {
       success: false,
       error: 'An unexpected error occurred while calculating the profit.',
-    };
-  }
-}
-
-export async function getEncyclopediaArticle(
-  query: string,
-  language: string
-): Promise<{
-  success: boolean;
-  data?: SearchEncyclopediaOutput;
-  error?: string;
-}> {
-  try {
-    const result = await searchEncyclopedia({ query, language });
-    return { success: true, data: result };
-  } catch (error) {
-    console.error('Error searching encyclopedia:', error);
-    return {
-      success: false,
-      error: 'An unexpected error occurred while searching the encyclopedia.',
     };
   }
 }
