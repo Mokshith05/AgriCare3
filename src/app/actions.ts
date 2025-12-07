@@ -2,6 +2,7 @@
 
 import {
   analyzePhotoAndSuggestTreatments,
+  type AnalyzePhotoAndSuggestTreatmentsInput,
   type AnalyzePhotoAndSuggestTreatmentsOutput,
 } from '@/ai/flows/analyze-photo-and-suggest-treatments';
 import {
@@ -21,21 +22,17 @@ import {
 import { generateAudioFromText } from '@/ai/flows/generate-audio-from-text';
 
 export async function analyzeCropImage(
-  photoDataUri: string,
-  language: string
+  input: AnalyzePhotoAndSuggestTreatmentsInput
 ): Promise<{
   success: boolean;
   data?: AnalyzePhotoAndSuggestTreatmentsOutput;
   error?: string;
 }> {
   try {
-    if (!photoDataUri) {
+    if (!input.photoDataUri) {
       throw new Error('No image data provided.');
     }
-    const analysisResult = await analyzePhotoAndSuggestTreatments({
-      photoDataUri,
-      language,
-    });
+    const analysisResult = await analyzePhotoAndSuggestTreatments(input);
     return {
       success: true,
       data: analysisResult,

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Camera, Loader2, UploadCloud, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Textarea } from '@/components/ui/textarea';
 import { analyzeCropImage } from '@/app/actions';
 import AnalysisResult from './analysis-result';
 import type { AnalyzePhotoAndSuggestTreatmentsOutput } from '@/ai/flows/analyze-photo-and-suggest-treatments';
@@ -18,6 +19,7 @@ export default function ImageUploader() {
   const { language } = useLanguage();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [file, setFile] = useState<File | null>(null);
+  const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<AnalyzePhotoAndSuggestTreatmentsOutput | null>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -25,6 +27,14 @@ export default function ImageUploader() {
 
   const handleFileChange = (selectedFile: File | null) => {
     if (selectedFile) {
+      if (!selectedFile.type.startsWith('image/')) {
+        toast({
+          variant: 'destructive',
+          title: t('toast.invalidFileType.title'),
+          description: t('toast.invalidFileType.description'),
+        });
+        return;
+      }
       setFile(selectedFile);
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -63,7 +73,11 @@ export default function ImageUploader() {
     setLoading(true);
     setResult(null);
     try {
-      const response = await analyzeCropImage(imagePreview, language);
+      const response = await analyzeCropImage({
+        photoDataUri: imagePreview,
+        language,
+        description,
+      });
       if (response.success && response.data) {
         setResult(response.data);
       } else {
@@ -88,6 +102,7 @@ export default function ImageUploader() {
     setImagePreview(null);
     setFile(null);
     setResult(null);
+    setDescription('');
   };
 
   if (result && imagePreview) {
@@ -148,6 +163,21 @@ export default function ImageUploader() {
             </>
           )}
         </div>
+        
+        {imagePreview && (
+          <div className="mt-4 space-y-2">
+            <label htmlFor="description" className="text-sm font-medium text-foreground">{t('imageUploader.description.label')}</label>
+            <Textarea
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder={t('imageUploader.description.placeholder')}
+              rows={3}
+            />
+            <p className="text-xs text-muted-foreground">{t('imageUploader.description.helper')}</p>
+          </div>
+        )}
+
         <div className="mt-6 flex justify-center">
           <Button onClick={handleAnalyze} disabled={!file || loading} size="lg">
             {loading ? (
