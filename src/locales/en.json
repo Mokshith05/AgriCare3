@@ -69,131 +69,37 @@
     "title": "Encyclopedia",
     "pageTitle": "Crop Health Encyclopedia",
     "pageDescription": "Browse our database for information on common crop diseases and pests.",
-    "searchPlaceholder": "Search articles...",
-    "searchButton": "Search",
     "symptoms": "Symptoms",
     "prevention": "Prevention",
     "organicTreatment": "Organic Treatment",
     "categories": {
       "disease": "Disease",
-      "pest": "Pest",
-      "nutrientdeficiency": "Nutrient Deficiency",
-      "other": "Other"
+      "pest": "Pest"
     },
     "articles": {
       "blight-disease": {
         "title": "Blight Disease",
-        "description": "Blight is a rapid and complete chlorosis, browning, then death of plant tissues such as leaves, flowers, twigs, or stems.",
-        "symptoms": [
-          "Dark, water-soaked spots on leaves",
-          "White mold on the underside of leaves",
-          "Fruit develops dark, sunken areas"
-        ],
-        "prevention": [
-          "Ensure good air circulation",
-          "Water at the base of plants",
-          "Rotate crops annually"
-        ],
-        "treatment": [
-          "Remove and destroy infected plants",
-          "Apply copper-based fungicides",
-          "Use blight-resistant varieties"
-        ]
+        "description": "Blight is a rapid and complete chlorosis, browning, then death of plant tissues such as leaves, flowers, twigs, or stems."
       },
       "powdery-mildew": {
         "title": "Powdery Mildew",
-        "description": "A fungal disease that affects a wide range of plants, characterized by white powdery spots on the leaves and stems.",
-        "symptoms": [
-          "White, powdery spots on leaves and stems",
-          "Yellowing of leaves",
-          "Distorted or stunted growth"
-        ],
-        "prevention": [
-          "Plant in sunny locations",
-          "Provide good air circulation",
-          "Avoid over-fertilizing with nitrogen"
-        ],
-        "treatment": [
-          "Spray with a mixture of milk and water (1:10 ratio)",
-          "Apply neem oil or horticultural oil",
-          "Use sulfur or potassium bicarbonate fungicides"
-        ]
+        "description": "A fungal disease that affects a wide range of plants, characterized by white powdery spots on the leaves and stems."
       },
       "aphids-infestation": {
         "title": "Aphids Infestation",
-        "description": "Aphids are small, sap-sucking insects that can cause significant damage to plants by stunting growth and spreading diseases.",
-        "symptoms": [
-          "Clusters of small insects on new growth",
-          "Yellow, curled, or misshapen leaves",
-          "Sticky \"honeydew\" substance on leaves"
-        ],
-        "prevention": [
-          "Encourage natural predators like ladybugs",
-          "Inspect plants regularly",
-          "Use reflective mulch to deter them"
-        ],
-        "treatment": [
-          "Spray with a strong jet of water",
-          "Apply insecticidal soap",
-          "Introduce beneficial insects like lacewings"
-        ]
+        "description": "Aphids are small, sap-sucking insects that can cause significant damage to plants by stunting growth and spreading diseases."
       },
       "rust-fungus": {
         "title": "Rust Fungus",
-        "description": "Rust is a fungal disease that creates reddish-orange pustules on plant leaves, weakening the plant over time.",
-        "symptoms": [
-          "Orange, yellow, or brown powdery pustules on leaves",
-          "Stunted plant growth",
-          "Premature leaf drop"
-        ],
-        "prevention": [
-          "Water soil, not leaves",
-          "Ensure proper spacing for air flow",
-          "Clean up fallen debris at the end of the season"
-        ],
-        "treatment": [
-          "Remove and destroy infected leaves",
-          "Apply sulfur or copper-based fungicides",
-          "Rotate crops to avoid reinfection"
-        ]
+        "description": "Rust is a fungal disease that creates reddish-orange pustules on plant leaves, weakening the plant over time."
       },
       "caterpillar-damage": {
         "title": "Caterpillar Damage",
-        "description": "Various species of caterpillars feed on plant leaves, flowers, and fruits, causing widespread damage if not controlled.",
-        "symptoms": [
-          "Holes chewed in leaves",
-          "Skeletonized leaves (only veins remain)",
-          "Visible caterpillars or their droppings (frass)"
-        ],
-        "prevention": [
-          "Use row covers on young plants",
-          "Encourage birds and predatory insects",
-          "Check undersides of leaves for eggs"
-        ],
-        "treatment": [
-          "Hand-pick caterpillars off plants",
-          "Apply Bacillus thuringiensis (Bt), a natural pesticide",
-          "Use neem oil sprays"
-        ]
+        "description": "Various species of caterpillars feed on plant leaves, flowers, and fruits, causing widespread damage if not controlled."
       },
       "bacterial-spot": {
         "title": "Bacterial Spot",
-        "description": "A common disease in warm, humid climates, affecting peppers and tomatoes by causing spots on leaves and fruit.",
-        "symptoms": [
-          "Small, water-soaked spots on leaves that turn dark and greasy",
-          "Raised, scab-like spots on fruit",
-          "Yellowing and dropping of leaves"
-        ],
-        "prevention": [
-          "Use disease-free seeds",
-          "Rotate crops with non-susceptible plants",
-          "Avoid working with plants when they are wet"
-        ],
-        "treatment": [
-          "Apply copper-based bactericides",
-          "Remove infected plants to prevent spread",
-          "Improve air circulation"
-        ]
+        "description": "A common disease in warm, humid climates, affecting peppers and tomatoes by causing spots on leaves and fruit."
       }
     }
   },
@@ -358,5 +264,11 @@
       "calculationFailedTitle": "Calculation Failed",
       "calculationFailedDesc": "Could not calculate profit at this time. Please try again."
     }
+  },
+  "chatbot": {
+    "title": "AgriBot",
+    "welcomeMessage": "Hello! I'm AgriBot. How can I help you with your farm today?",
+    "inputPlaceholder": "Ask me anything...",
+    "errorMessage": "Sorry, I'm having trouble connecting. Please try again later."
   }
 }

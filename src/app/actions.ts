@@ -14,6 +14,11 @@ import {
   type CalculateProfitInput,
   type CalculateProfitOutput,
 } from '@/ai/flows/calculate-profit';
+import {
+  generateChatResponse,
+  type GenerateChatResponseInput,
+} from '@/ai/flows/generate-chat-response';
+import { generateAudioFromText } from '@/ai/flows/generate-audio-from-text';
 
 export async function analyzeCropImage(
   photoDataUri: string,
@@ -79,6 +84,32 @@ export async function calculateCropProfit(
     return {
       success: false,
       error: 'An unexpected error occurred while calculating the profit.',
+    };
+  }
+}
+
+export async function getChatbotResponse(
+  input: GenerateChatResponseInput
+): Promise<{ success: boolean; message?: string; audioDataUri?: string; error?: string }> {
+  try {
+    const message = await generateChatResponse(input);
+    
+    // Generate audio in parallel, but don't block the response for it
+    const audioPromise = generateAudioFromText(message)
+      .then(result => result.audioDataUri)
+      .catch(err => {
+        console.error("Audio generation failed:", err);
+        return undefined;
+      });
+
+    const audioDataUri = await audioPromise;
+
+    return { success: true, message, audioDataUri };
+  } catch (error) {
+    console.error('Error in getChatbotResponse:', error);
+    return {
+      success: false,
+      error: 'Sorry, I encountered an error. Please try again.',
     };
   }
 }
