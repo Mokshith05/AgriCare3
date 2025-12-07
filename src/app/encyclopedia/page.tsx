@@ -18,7 +18,7 @@ export default function EncyclopediaPage() {
     <SidebarInset>
       <div className="flex h-full flex-col">
         <Header title={t('encyclopedia.title')} />
-        <main className="flex-1 p-4 md:p-6 lg:p-8">
+        <main className="flex-1 animate-fade-in-up p-4 md:p-6 lg:p-8">
           <div className="mx-auto max-w-6xl">
             <div className="mb-8 text-center">
               <h1 className="mb-4 text-4xl font-bold tracking-tight">{t('encyclopedia.pageTitle')}</h1>
@@ -28,12 +28,13 @@ export default function EncyclopediaPage() {
             </div>
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {ENCYCLOPEDIA_ARTICLES.map(article => {
+              {ENCYCLOPEDIA_ARTICLES.map((article, index) => {
                 const placeholder = PlaceHolderImages.find(p => p.id === article.imageId);
                 return (
                   <Card 
                     key={article.id} 
-                    className="cursor-pointer overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1"
+                    className="cursor-pointer overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1 animate-fade-in-up"
+                    style={{ animationDelay: `${index * 100}ms` }}
                     onClick={() => router.push(`/encyclopedia/${article.slug}?lang=${language}`)}
                   >
                     <CardHeader className="p-0">

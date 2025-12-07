@@ -92,14 +92,14 @@ export default function ProfitCalculatorPage() {
     <SidebarInset>
       <div className="flex h-full flex-col">
         <Header title={t('profitCalculator.title')} />
-        <main className="flex-1 p-4 md:p-6 lg:p-8">
+        <main className="flex-1 animate-fade-in-up p-4 md:p-6 lg:p-8">
           <div className="mx-auto max-w-4xl">
-             <div className="mb-8">
+             <div className="mb-8 animate-fade-in-up animation-delay-200">
               <h1 className="text-3xl font-bold tracking-tight">{t('profitCalculator.pageTitle')}</h1>
               <p className="mt-1 text-muted-foreground">{t('profitCalculator.pageDescription')}</p>
             </div>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                <Card>
+                <Card className="animate-fade-in-up animation-delay-400">
                     <CardHeader>
                     <CardTitle>{t('profitCalculator.form.title')}</CardTitle>
                     <CardDescription>{t('profitCalculator.form.description')}</CardDescription>
@@ -137,7 +137,7 @@ export default function ProfitCalculatorPage() {
                     </form>
                     </CardContent>
                 </Card>
-                 <div className="flex items-center justify-center rounded-lg border-2 border-dashed bg-card/50 p-8">
+                 <div className="flex items-center justify-center rounded-lg border-2 border-dashed bg-card/50 p-8 animate-fade-in-up animation-delay-600">
                   {loading ? (
                      <div className="text-center">
                         <Loader2 className="mx-auto h-12 w-12 animate-spin text-primary" />

@@ -57,7 +57,7 @@ export default async function EncyclopediaArticlePage({ params, searchParams }: 
     <SidebarInset>
       <div className="flex h-full flex-col">
         <Header title={t('encyclopedia.title')} />
-        <main className="flex-1 p-4 md:p-6 lg:p-8">
+        <main className="flex-1 animate-fade-in-up p-4 md:p-6 lg:p-8">
           <article>
             <div className="mb-8">
               <h1 className="mb-2 text-4xl font-bold tracking-tight text-primary">{articleTitle}</h1>

@@ -58,10 +58,10 @@ export default function LogbookPage() {
     <SidebarInset>
       <div className="flex h-full flex-col">
         <Header title={t('logbook.title')} />
-        <main className="flex-1 p-4 md:p-6 lg:p-8">
+        <main className="flex-1 animate-fade-in-up p-4 md:p-6 lg:p-8">
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-3">
             <div className="md:col-span-1">
-              <Card>
+              <Card className="animate-fade-in-up animation-delay-200">
                 <CardHeader>
                   <CardTitle>{t('logbook.addNewLog.title')}</CardTitle>
                   <CardDescription>{t('logbook.addNewLog.description')}</CardDescription>
@@ -95,7 +95,7 @@ export default function LogbookPage() {
                 </CardContent>
               </Card>
             </div>
-            <div className="md:col-span-2">
+            <div className="md:col-span-2 animate-fade-in-up animation-delay-400">
               <h2 className="mb-4 text-2xl font-bold">{t('logbook.recentActivities.title')}</h2>
               <div className="space-y-4">
                 {isClient && logs.length === 0 ? (

@@ -57,16 +57,16 @@ export default function PreventiveCarePage() {
     <SidebarInset>
       <div className="flex h-full flex-col">
         <Header title={t('preventiveCare.title')} />
-        <main className="flex-1 p-4 md:p-6 lg:p-8">
+        <main className="flex-1 animate-fade-in-up p-4 md:p-6 lg:p-8">
           <div className="mx-auto max-w-4xl">
-            <div className="mb-8 text-center">
+            <div className="mb-8 text-center animate-fade-in-up animation-delay-200">
               <h1 className="text-4xl font-bold tracking-tight">{t('preventiveCare.pageTitle')}</h1>
               <p className="mt-2 text-lg text-muted-foreground">
                 {t('preventiveCare.pageDescription')}
               </p>
             </div>
 
-            <Card className="mb-8">
+            <Card className="mb-8 animate-fade-in-up animation-delay-400">
               <CardContent className="p-6">
                 <form onSubmit={handleSearch} className="flex gap-4">
                   <Input
@@ -95,7 +95,7 @@ export default function PreventiveCarePage() {
             )}
 
             {results && (
-              <Card>
+              <Card className="animate-fade-in-up">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-2xl">
                     <Sprout className="h-7 w-7 text-primary" />

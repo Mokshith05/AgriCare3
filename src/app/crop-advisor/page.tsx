@@ -62,10 +62,10 @@ export default function CropAdvisorPage() {
     <SidebarInset>
       <div className="flex h-full flex-col">
         <Header title={t('advisor.title')} />
-        <main className="flex-1 p-4 md:p-6 lg:p-8">
+        <main className="flex-1 animate-fade-in-up p-4 md:p-6 lg:p-8">
           <div className="mx-auto max-w-4xl">
             {!recommendations && (
-              <Card>
+              <Card className="animate-fade-in-up animation-delay-200">
                 <CardHeader>
                   <CardTitle>{t('advisor.form.title')}</CardTitle>
                   <CardDescription>{t('advisor.form.description')}</CardDescription>
