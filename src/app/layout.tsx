@@ -31,6 +31,18 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased" suppressHydrationWarning>
+        <div className="leaves-container">
+          <div className="leaf"></div>
+          <div className="leaf"></div>
+          <div className="leaf"></div>
+          <div className="leaf"></div>
+          <div className="leaf"></div>
+          <div className="leaf"></div>
+          <div className="leaf"></div>
+          <div className="leaf"></div>
+          <div className="leaf"></div>
+          <div className="leaf"></div>
+        </div>
         <LanguageProvider>
           <SidebarProvider>
             <AppSidebar />
