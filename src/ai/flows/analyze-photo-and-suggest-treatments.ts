@@ -18,7 +18,6 @@ const AnalyzePhotoAndSuggestTreatmentsInputSchema = z.object({
       "A photo of the affected crop, as a data URI that must include a MIME type and use Base64 encoding. Expected format: 'data:<mimetype>;base64,<encoded_data>'."
     ),
   language: z.string().describe('The language for the analysis report (e.g., "en", "hi").'),
-  description: z.string().optional().describe("A farmer's description of the issue, if any."),
 });
 export type AnalyzePhotoAndSuggestTreatmentsInput = z.infer<typeof AnalyzePhotoAndSuggestTreatmentsInputSchema>;
 
@@ -67,7 +66,7 @@ const prompt = ai.definePrompt({
   input: {schema: AnalyzePhotoAndSuggestTreatmentsInputSchema},
   output: {schema: AnalyzePhotoAndSuggestTreatmentsOutputSchema},
   prompt: `SYSTEM: You are AgriAssist, an expert agronomist AI specializing in plant health.
-Analyze the provided crop image and/or description to identify issues and provide a comprehensive action plan.
+Analyze the provided crop image to identify issues and provide a comprehensive action plan.
 
 Analyze this crop image and return:
 1) Diagnosed issue(s) (disease/pest/nutrient deficiency) with short reasoning.
@@ -82,15 +81,8 @@ IMPORTANT: Generate the entire JSON output and the summary translated into the f
 
 Return results in the EXACT JSON schema specified.
 
-{{#if photoDataUri}}
 USER: Analyze the attached image.
 Photo: {{media url=photoDataUri}}
-{{/if}}
-{{#if description}}
-USER: A farmer has provided the following description: {{{description}}}
-{{else}}
-Image not provided. Diagnose based on the farmer's description.
-{{/if}}
 `,
 });
 

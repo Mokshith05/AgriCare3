@@ -34,12 +34,7 @@
     "or": "or",
     "browseFiles": "Browse files",
     "analyzeButton": "Analyze Crop",
-    "analyzingButton": "Analyzing...",
-    "description": {
-      "label": "Description (Optional)",
-      "placeholder": "e.g., Yellow spots on lower leaves, plant seems droopy.",
-      "helper": "Adding details can improve the analysis."
-    }
+    "analyzingButton": "Analyzing..."
   },
   "analysis": {
     "reportTitle": "Crop Health Report",
