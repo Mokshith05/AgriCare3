@@ -80,6 +80,20 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-size: 400% 400%;
+    animation: animate-background 15s ease infinite;
+  }
+}
+
+@keyframes animate-background {
+  0% {
+    background-color: hsl(100, 12%, 5%);
+  }
+  50% {
+    background-color: hsl(120, 15%, 8%);
+  }
+  100% {
+    background-color: hsl(100, 12%, 5%);
   }
 }
 
