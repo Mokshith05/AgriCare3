@@ -8,3 +8,4 @@ import '@/ai/flows/recommend-crops.ts';
 import '@/ai/flows/calculate-profit.ts';
 import '@/ai/flows/generate-chat-response';
 import '@/ai/flows/generate-audio-from-text';
+import '@/ai/flows/generate-preventive-care-tips';

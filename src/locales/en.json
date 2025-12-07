@@ -198,51 +198,22 @@
     }
   },
   "preventiveCare": {
-    "title": "Preventive Care",
-    "pageTitle": "Crop Care Guide",
-    "pageDescription": "Proactive tips to keep your crops healthy and thriving.",
-    "crops": {
-      "tomatoes": "Tomatoes",
-      "leafygreens(spinach,lettuce)": "Leafy Greens (Spinach, Lettuce)",
-      "peppers&eggplants": "Peppers & Eggplants"
+    "title": "Crop Care Guide",
+    "pageTitle": "AI Crop Care Guide",
+    "pageDescription": "Enter a crop name to get AI-powered preventive care tips.",
+    "search": {
+      "placeholder": "e.g., Tomatoes, Wheat, Rice...",
+      "button": "Search",
+      "loadingButton": "Searching..."
     },
-    "tips": {
-      "properspacing": {
-        "title": "Proper Spacing",
-        "description": "Plant tomato seedlings at least 24-36 inches apart to ensure good air circulation, which helps prevent fungal diseases like blight."
-      },
-      "consistentwatering": {
-        "title": "Consistent Watering",
-        "description": "Water deeply and at the base of the plant to avoid wetting the foliage. Inconsistent watering can lead to blossom-end rot."
-      },
-      "mulching": {
-        "title": "Mulching",
-        "description": "Apply a layer of organic mulch (like straw or wood chips) to conserve moisture, suppress weeds, and prevent soil-borne diseases from splashing onto leaves."
-      },
-      "croprotation": {
-        "title": "Crop Rotation",
-        "description": "Avoid planting leafy greens in the same spot year after year to prevent the buildup of soil pests and diseases."
-      },
-      "shadeinhotweather": {
-        "title": "Shade in Hot Weather",
-        "description": "Provide partial shade during the hottest parts of the day to prevent bolting (premature flowering) and scorched leaves."
-      },
-      "monitorforpests": {
-        "title": "Monitor for Pests",
-        "description": "Regularly check for aphids and cabbage worms. Hand-pick larger pests or use insecticidal soap for smaller ones."
-      },
-      "supportandstaking": {
-        "title": "Support and Staking",
-        "description": "Provide stakes or cages to support the plants as they grow heavy with fruit. This keeps fruit off the ground and improves air circulation."
-      },
-      "fertilizeappropriately": {
-        "title": "Fertilize Appropriately",
-        "description": "Use a balanced, low-nitrogen fertilizer. Too much nitrogen can encourage lush foliage at the expense of fruit production."
-      },
-      "watchforbacterialspot": {
-        "title": "Watch for Bacterial Spot",
-        "description": "Avoid working with plants when they are wet to prevent the spread of bacterial diseases. Use copper-based sprays as a preventive measure if needed."
-      }
+    "loadingText": "Generating care tips for your crop...",
+    "results": {
+      "title": "Care Guide for {{cropName}}",
+      "summaryTitle": "AI Summary"
+    },
+    "error": {
+      "title": "Failed to Get Tips",
+      "default": "Could not generate care tips at this time. Please try again."
     }
   },
   "logbook": {

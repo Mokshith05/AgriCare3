@@ -20,6 +20,12 @@ import {
   type GenerateChatResponseInput,
 } from '@/ai/flows/generate-chat-response';
 import { generateAudioFromText } from '@/ai/flows/generate-audio-from-text';
+import {
+  generatePreventiveCareTips,
+  type GeneratePreventiveCareTipsInput,
+  type GeneratePreventiveCareTipsOutput,
+} from '@/ai/flows/generate-preventive-care-tips';
+
 
 export async function analyzeCropImage(
   input: AnalyzePhotoAndSuggestTreatmentsInput
@@ -62,6 +68,25 @@ export async function getCropRecommendations(
     return {
       success: false,
       error: 'An unexpected error occurred while generating recommendations.',
+    };
+  }
+}
+
+export async function getPreventiveCareTips(
+  input: GeneratePreventiveCareTipsInput
+): Promise<{
+  success: boolean;
+  data?: GeneratePreventiveCareTipsOutput;
+  error?: string;
+}> {
+  try {
+    const result = await generatePreventiveCareTips(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error getting care tips:', error);
+    return {
+      success: false,
+      error: 'An unexpected error occurred while generating care tips.',
     };
   }
 }
